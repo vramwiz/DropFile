@@ -1,0 +1,32 @@
+object FormMain: TFormMain
+  Left = 0
+  Top = 0
+  Caption = #12501#12449#12452#12523#12434#12501#12457#12540#12512#20869#12395#12489#12525#12483#12503
+  ClientHeight = 231
+  ClientWidth = 505
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 13
+  object ListBox1: TListBox
+    Left = 0
+    Top = 0
+    Width = 505
+    Height = 231
+    Align = alClient
+    ItemHeight = 13
+    TabOrder = 0
+    ExplicitLeft = 192
+    ExplicitTop = 112
+    ExplicitWidth = 121
+    ExplicitHeight = 97
+  end
+end
