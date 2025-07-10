@@ -1,82 +1,41 @@
-\# DropFile - ファイルドロップ受付ユニット（Delphi）
+# DropFile.pas
 
-
-
-Delphiアプリケーションで、任意のコントロールにファイルのドラッグ＆ドロップ（D\&D）機能を追加できる軽量ユニットです。  
-
-Windowsのエクスプローラーなどからドロップされたファイル一覧をイベントで受け取ることができます。
-
-
+Delphi 向けのファイルドロップ受付ユニットです。  
+外部アプリケーション（例：エクスプローラー）から任意の `TWinControl` 上へドラッグ＆ドロップされたファイルを検出し、イベントで通知します。
 
 ---
 
+## ✨ 機能
 
-
-\## ✨ 特徴
-
-
-
-\- 任意の `TWinControl` にファイルドロップを有効化
-
-\- ドロップされたファイル一覧を `OnDropFiles` イベントで通知
-
-\- 複数ファイル対応
-
-\- Win32 API（IDropTarget）ベースの軽量・高速実装
-
-
+- 任意の `TWinControl` に対して **ファイルのD&D受付** を有効化
+- 複数ファイルの同時ドロップに対応
+- コールバックイベントでファイルパス一覧を受信
+- `Detach` により安全にドロップ受付を解除可能
+- フォーム、パネル、リストビュー、画像などに柔軟に適用可能
 
 ---
 
-
-
-\## 🚀 使用方法
-
-
-
-1\. `DropFile.pas` をプロジェクトに追加
-
-2\. コントロール（例: `TPanel`, `TListView`, `TForm`）に対して `Attach` を呼び出す
-
-3\. `OnDropFiles` イベントを実装してファイル一覧を受け取る
-
-4\. 不要になったら `Detach` でドロップ受付を解除
-
-
-
-\### 🔧 サンプルコード
-
-
+## 📦 使用方法
 
 ```pascal
+uses
+  DropFile;
 
 var
-
-&nbsp; DropAgent: TDropFile;
-
-
+  DropFile: TDropFile;
 
 procedure TForm1.FormCreate(Sender: TObject);
-
 begin
-
-&nbsp; DropAgent := TDropFile.Create;
-
-&nbsp; DropAgent.OnDropFiles := HandleDrop;
-
-&nbsp; DropAgent.Attach(Memo1); // Memo1など任意のTWinControl
-
+  DropFile := TDropFile.Create;
+  DropFile.Attach(Memo1); // Memo1 でファイルのドロップ受付開始
+  DropFile.OnDropReceived :=
+    procedure(Sender: TObject; Control: TWinControl; const FileNames: TArray<string>)
+    begin
+      ShowMessage('最初のファイル: ' + FileNames[0]);
+    end;
 end;
 
-
-
-procedure TForm1.HandleDrop(Sender: TObject; const FileNames: TStrings);
-
+procedure TForm1.FormDestroy(Sender: TObject);
 begin
-
-&nbsp; ShowMessage('Dropped: ' + FileNames.Text);
-
+  DropFile.Free;
 end;
-
-
-
