@@ -20,13 +20,30 @@ object FormMain: TFormMain
     Left = 0
     Top = 0
     Width = 505
-    Height = 231
-    Align = alClient
+    Height = 107
+    Align = alTop
     ItemHeight = 13
     TabOrder = 0
-    ExplicitLeft = 192
-    ExplicitTop = 112
-    ExplicitWidth = 121
-    ExplicitHeight = 97
+  end
+  object ListBox2: TListBox
+    Left = 0
+    Top = 142
+    Width = 505
+    Height = 89
+    Align = alClient
+    ItemHeight = 13
+    TabOrder = 1
+    ExplicitTop = 8
+    ExplicitHeight = 113
+  end
+  object Panel1: TPanel
+    Left = 0
+    Top = 107
+    Width = 505
+    Height = 35
+    Align = alTop
+    Caption = #19978#19979#22909#12365#12394#26041#12395#12501#12449#12452#12523#12434'D&D'
+    TabOrder = 2
+    ExplicitTop = 113
   end
 end
